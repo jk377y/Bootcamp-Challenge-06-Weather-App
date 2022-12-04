@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Day Weather App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body class="body">
+    <header id="header" class="header">
+        <img src="./assets/images/hot.png" alt="hot thermometer">
+        <h1 id="titleName" class="titleName">5 Day Weather Forecast   <a href="https://github.com/jk377y" target="_blank" class="byJames fa-github fab"><span>   by jk377y</span></a></h1>
+        <img src="./assets/images/cold.png" alt="cold thermometer">
+    </header>
+    <section class="searchContainer">
+        <div class="searchDiv">
+            <h2>Enter a City and State:</h2>
+            <input type="text" id="searchCity" class="searchCity" placeholder="Enter City Here">
+            <input type="text" id="searchState" class="searchState" placeholder="Enter State Here">
+            <button type="submit" id="searchBtn" class="search searchBtn button">Search for your location</button>
+        </div>
+        <ul class="prevDiv">
+            <li class="cityBtn hide"><button id="prevOne" class="prevOne button">Smallville</button></li>
+            <li class="cityBtn hide"><button id="prevTwo" class="prevTwo button">Gotham</button></li>
+            <li class="cityBtn hide"><button id="prevThree" class="prevThree button">OZ</button></button></li>
+            <li class="cityBtn hide"><button id="prevFour" class="prevFour button">Silver</button></li>
+            <li class="cityBtn hide"><button id="prevFive" class="prevFive button">Bum Fuckt Egypt</button></li>
+        </ul>
+        <div class="clearDiv">
+            <button type="submit" id="clearBtn" class="clearBtn button">Clear your history</button>
+        </div>
+    </section>
+    <section id="todayContainer" class="todayContainer">
+        <ul id="todayQry" class="todayQry">
+            <li id="city" class="city">Houston<span>  ( </span><span id="todayDate" class="todayDate">12/03/2022</span><span> )</span></li>
+            <li id="todayIcon" class="todayIcon">icon here</li>
+            <li class="todayTemp">Temperature:   <span id="todayTemp">92.3</span></li>
+            <li class="todayWind">Wind:  <span id="todayWind">SW 3MPH</span></li>
+            <li class="todayHumidity">Humidity:  <span id="todayHumidity" >64.3</span></li>
+        </ul>
+        <div class="happyPic"></div>
+        <div class="power">
+            <span class="pOne">Powered By:</span><br><a href="https://openweathermap.org" target="_blank"><span class="pTwo">openweathermap.org</span></a>
+        </div>
+    </section>
+    <section id="fiveDayContainer" class="fiveDayContainer">
+        <div class="fiveDayTitle">
+            <h2>5 Day Forecast</h2>
+        </div>
+        <div class="fiveDay">
+            <ul class="plusOne">
+                <li class="forecastText">Date:   <span id="oneDate" class="fiveDayText">tomorrow</span></li>
+                <li class="forecastText">Temperature:   <span id="oneTemp" class="fiveDayText">116.34392</span></li>
+                <li class="forecastText">Wind:   <span id="oneWind" class="fiveDayText">Category 5</span></li>
+                <li class="forecastText">Humidity:   <span id="oneHum" class="fiveDayText">Sauna</span></li>
+            </ul>
+            <ul class="plusTwo">
+                <li class="forecastText">Date:   <span id="twoDate" class="fiveDayText">the next day</span></li>
+                <li class="forecastText">Temperature:   <span id="twoTemp" class="fiveDayText">116.34392</span></li>
+                <li class="forecastText">Wind:   <span id="twoWind" class="fiveDayText">Category 5</span></li>
+                <li class="forecastText">Humidity:   <span id="twoHum" class="fiveDayText">Sauna</span></li>
+            </ul>
+            <ul class="plusThree">
+                <li class="forecastText">Date:   <span id="threeDate" class="fiveDayText">the next day</span></li>
+                <li class="forecastText">Temperature:   <span id="threeTemp" class="fiveDayText">116.34392</span></li>
+                <li class="forecastText">Wind:   <span id="threeWind" class="fiveDayText">Category 5</span></li>
+                <li class="forecastText">Humidity:   <span id="threeHum" class="fiveDayText">Sauna</span></li>
+            </ul>
+            <ul class="plusFour">
+                <li class="forecastText">Date:   <span id="fourDate" class="fiveDayText">the next day</span></li>
+                <li class="forecastText">Temperature:   <span id="fourTemp" class="fiveDayText">116.34392</span></li>
+                <li class="forecastText">Wind:   <span id="fourWind" class="fiveDayText">Category 5</span></li>
+                <li class="forecastText">Humidity:   <span id="fourHum" class="fiveDayText"></span>Sauna</li>
+            </ul>
+            <ul class="plusFive">
+                <li class="forecastText">Date:   <span id="fiveDate" class="fiveDayText">the next day</span></li>
+                <li class="forecastText">Temperature:   <span id="fiveTemp" class="fiveDayText">116.34392</span></li>
+                <li class="forecastText">Wind:   <span id="fiveWind" class="fiveDayText"></span>Category 5</li>
+                <li class="forecastText">Humidity:   <span id="fiveHum" class="fiveDayText"></span>Sauna</li>
+            </ul>
+        </div>
+    </section>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
+
+
+        
+        
+       
+        
+        
