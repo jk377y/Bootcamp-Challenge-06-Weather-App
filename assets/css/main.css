@@ -1,0 +1,298 @@
+/* My styling reset */
+*, 
+*::before, 
+*::after {
+    box-sizing: border-box;
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    line-height: 1.5;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+overflow-wrap: break-word;
+}
+
+/* Custom Styling */
+:root {
+    --windowColor: rgba(94, 154, 211, 0.315);;
+    --bgcolor: rgb(56, 56, 56);
+    --border: rgb(37, 97, 138);
+    --hover: rgb(255, 255, 0);
+    --buttonColor: rgb(48, 48, 48);
+    --whiteText: rgb(255, 255, 255);
+    --blackText: rgb(0, 0, 0);
+    --closeBtn: rgba(99, 178, 252, 0.274);
+    --cloudGray: rgba(128, 128, 128, 0.596);
+    --insetBorder: silver;
+    --navBackground: rgba(114, 189, 233, 0);
+}
+.body {
+    display: grid;
+    grid-template: 20fr 30fr 50fr/ 25fr 75fr;
+    grid-template-areas:
+        "header             header"
+        "searchContainer    todayContainer"
+        "searchContainer    fiveDayContainer";
+    gap: 25px;
+    background-color: var(--bgcolor);
+    width: 100%;
+    height: 100%;
+    background-image: url(/Five_Day_Weather_App/assets/images/clouds4.jpg);
+    background-size: 100%;
+    
+}
+
+header, section, footer {
+    background-color: var(--windowColor);
+    border-radius: 30px;
+    padding: 5px;
+    border: 4px solid var(--border);
+    border-radius: 30px;
+    box-shadow: 1px 1px 5px 1px;
+}
+
+.header {
+    grid-area: header;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    height: 150px;
+    justify-content: space-between;
+}
+
+.byJames {
+    font-size: 16px;
+    color: rgb(255, 0, 0);
+    text-decoration: none;
+}
+
+img {
+    border-radius: 20px;
+}
+
+.titleName {
+    font-size: 72px;
+    text-align: center;
+}
+
+.searchContainer {
+    grid-area: searchContainer;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.happyPic {
+    background-image: url(/Five_Day_Weather_App/assets/images/bbq.jpg);
+    background-size: 100%;
+    width: 50%;
+    border-radius: 30px;
+    margin: 10px;
+    padding: 30px;
+    border: 4px solid var(--blackText);
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px 1px;
+}
+
+.todayContainer {
+    grid-area: todayContainer;
+    margin-right: 50px;
+}
+
+.fiveDayContainer {
+    grid-area: fiveDayContainer;
+    margin-right: 50px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pOne {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.pTwo {
+    font-size: 24px;
+    color: blue;
+    text-align: center;
+    text-decoration: none;
+}
+
+.footer {
+    grid-area: footer;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    
+}
+
+.searchDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 40px;
+}
+
+#searchBtn, #clearBtn {
+    background-color: var(--closeBtn);
+}
+
+h2 {
+    text-align: center;
+    font-size: 36px;
+}
+
+.searchCity, .searchState {
+    width: 100%;
+    height: 2rem;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    border: inset 3px gray;
+}
+
+.prevDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    list-style: none;
+}
+
+.clearDiv {
+    margin-top: auto;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.cityBtn {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.button {
+    color: var(--blackText);
+    background-color: var(--navBackground);
+    height: 3rem;
+    width: 100%;
+    margin-top: 10px;
+    border: 4px solid var(--blackText);
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px 1px;
+    font-size: 18px;
+}
+
+.todayContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.todayQry {
+    width: 30%;
+    background-color: var(--whiteText);
+    border-radius: 30px;
+    margin: 10px;
+    padding: 30px;
+    border: 4px solid var(--blackText);
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px 1px;
+}
+
+.power {
+    width: 20%;
+    background-color: var(--whiteText);
+    border-radius: 30px;
+    margin: 10px;
+    padding-top: 40px;
+    align-self: center;
+    text-align: center;
+    height: 90%;
+    border: 4px solid var(--blackText);
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px 1px;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+.button:hover {
+    color: var(--whiteText);
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 1px 1px 5px 1px;
+    border: 2px solid white;
+    font-size: 24px;
+}
+
+.city {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.todayTemp, .todayWind, .todayHumidity {
+    font-size: 18px;
+}
+
+div ul {
+    list-style: none;
+}
+
+.fiveDayTitle {
+    height: 20%;
+}
+
+.fiveDay {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 70%;
+}
+
+.plusOne, .plusTwo, .plusThree, .plusFour, .plusFive {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--whiteText);
+    width: 20%;
+    border: 4px solid var(--blackText);
+    border-radius: 30px;
+    box-shadow: 1px 1px 5px 1px;
+    padding: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+    justify-content: space-evenly;
+    font-size: 14px;
+}
+
+.forecastText {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.hide {
+    display: none;
+}
