@@ -100,7 +100,7 @@ img {
 }
 
 .happyPic {
-    background-image: url(../../assets/images/bbq.jpg);
+    background-image: url(../images/bbq.jpg);
     background-size: 100%;
     width: 50%;
     border-radius: 30px;
