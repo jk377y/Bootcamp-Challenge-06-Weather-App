@@ -52,7 +52,7 @@ overflow-wrap: break-word;
     background-color: var(--bgcolor);
     width: 100%;
     height: 100%;
-    background-image: url(./assets/images/clouds4.jpg);
+    background-image: url(../assets/images/clouds4.jpg);
     background-size: 100%;
     
 }
@@ -100,7 +100,7 @@ img {
 }
 
 .happyPic {
-    background-image: url(./assets/images/bbq.jpg);
+    background-image: url(../assets/images/bbq.jpg);
     background-size: 100%;
     width: 50%;
     border-radius: 30px;
