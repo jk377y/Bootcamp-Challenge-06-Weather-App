@@ -33,12 +33,14 @@
         </div>
     </section>
     <section id="todayContainer" class="todayContainer">
+        
+        <!-- todo: -->
         <ul id="todayQry" class="todayQry">
-            <li id="city" class="city">Houston<span>  ( </span><span id="todayDate" class="todayDate">12/03/2022</span><span> )</span></li>
-            <li id="todayIcon" class="todayIcon">icon here</li>
-            <li class="todayTemp">Temperature:   <span id="todayTemp">92.3</span></li>
-            <li class="todayWind">Wind:  <span id="todayWind">SW 3MPH</span></li>
-            <li class="todayHumidity">Humidity:  <span id="todayHumidity" >64.3</span></li>
+            <li id="city" class="city"></li><span id="todayDate" class="todayDate"></span>
+            <li class="todayIcon"><img id="todayIcon" class="iconBG"></img></li>
+            <li class="todayTemp">Temperature:   <span id="todayTemp"></span></li>
+            <li class="todayWind">Wind:  <span id="todayWind"></span></li>
+            <li class="todayHumidity">Humidity:  <span id="todayHumidity" ></span></li>
         </ul>
         <div class="happyPic"></div>
         <div class="power">
@@ -51,37 +53,44 @@
         </div>
         <div class="fiveDay">
             <ul class="plusOne">
-                <li class="forecastText">Date:   <span id="oneDate" class="fiveDayText">tomorrow</span></li>
-                <li class="forecastText">Temperature:   <span id="oneTemp" class="fiveDayText">116.34392</span></li>
-                <li class="forecastText">Wind:   <span id="oneWind" class="fiveDayText">Category 5</span></li>
-                <li class="forecastText">Humidity:   <span id="oneHum" class="fiveDayText">Sauna</span></li>
+                <li class="forecastText"><img id="icon1" class="fiveDayText iconBG"></img></span></li>
+                <li class="forecastText">Date:   <span id="date1" class="fiveDayText"></span></li>
+                <li class="forecastText">Temperature:   <span id="temp1" class="fiveDayText"></span></li>
+                <li class="forecastText">Wind:   <span id="wind1" class="fiveDayText"></span></li>
+                <li class="forecastText">Humidity:   <span id="hum1" class="fiveDayText"></span></li>
             </ul>
             <ul class="plusTwo">
-                <li class="forecastText">Date:   <span id="twoDate" class="fiveDayText">the next day</span></li>
-                <li class="forecastText">Temperature:   <span id="twoTemp" class="fiveDayText">116.34392</span></li>
-                <li class="forecastText">Wind:   <span id="twoWind" class="fiveDayText">Category 5</span></li>
-                <li class="forecastText">Humidity:   <span id="twoHum" class="fiveDayText">Sauna</span></li>
+                <li class="forecastText"><img id="icon2" class="fiveDayText iconBG"></img></li>
+                <li class="forecastText">Date:   <span id="date2" class="fiveDayText"></span></li>
+                <li class="forecastText">Temperature:   <span id="temp2" class="fiveDayText"></span></li>
+                <li class="forecastText">Wind:   <span id="wind2" class="fiveDayText"></span></li>
+                <li class="forecastText">Humidity:   <span id="hum2" class="fiveDayText"></span></li>
             </ul>
             <ul class="plusThree">
-                <li class="forecastText">Date:   <span id="threeDate" class="fiveDayText">the next day</span></li>
-                <li class="forecastText">Temperature:   <span id="threeTemp" class="fiveDayText">116.34392</span></li>
-                <li class="forecastText">Wind:   <span id="threeWind" class="fiveDayText">Category 5</span></li>
-                <li class="forecastText">Humidity:   <span id="threeHum" class="fiveDayText">Sauna</span></li>
+                <li class="forecastText"><img id="icon3" class="fiveDayText iconBG"></img></li>
+                <li class="forecastText">Date:   <span id="date3" class="fiveDayText"></span></li>
+                <li class="forecastText">Temperature:   <span id="temp3" class="fiveDayText"></span></li>
+                <li class="forecastText">Wind:   <span id="wind3" class="fiveDayText"></span></li>
+                <li class="forecastText">Humidity:   <span id="hum3" class="fiveDayText"></span></li>
             </ul>
             <ul class="plusFour">
-                <li class="forecastText">Date:   <span id="fourDate" class="fiveDayText">the next day</span></li>
-                <li class="forecastText">Temperature:   <span id="fourTemp" class="fiveDayText">116.34392</span></li>
-                <li class="forecastText">Wind:   <span id="fourWind" class="fiveDayText">Category 5</span></li>
-                <li class="forecastText">Humidity:   <span id="fourHum" class="fiveDayText"></span>Sauna</li>
+                <li class="forecastText"><img id="icon4" class="fiveDayText iconBG"></img></li>
+                <li class="forecastText">Date:   <span id="date4" class="fiveDayText"></span></li>
+                <li class="forecastText">Temperature:   <span id="temp4" class="fiveDayText"></span></li>
+                <li class="forecastText">Wind:   <span id="wind4" class="fiveDayText"></span></li>
+                <li class="forecastText">Humidity:   <span id="hum4" class="fiveDayText"></span></li>
             </ul>
             <ul class="plusFive">
-                <li class="forecastText">Date:   <span id="fiveDate" class="fiveDayText">the next day</span></li>
-                <li class="forecastText">Temperature:   <span id="fiveTemp" class="fiveDayText">116.34392</span></li>
-                <li class="forecastText">Wind:   <span id="fiveWind" class="fiveDayText"></span>Category 5</li>
-                <li class="forecastText">Humidity:   <span id="fiveHum" class="fiveDayText"></span>Sauna</li>
+                <li class="forecastText"><img id="icon5" class="fiveDayText iconBG"></img></li>
+                <li class="forecastText">Date:   <span id="date5" class="fiveDayText"></span></li>
+                <li class="forecastText">Temperature:   <span id="temp5" class="fiveDayText"></span></li>
+                <li class="forecastText">Wind:   <span id="wind5" class="fiveDayText"></span></li>
+                <li class="forecastText">Humidity:   <span id="hum5" class="fiveDayText"></span></li>
             </ul>
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script>dayjs().format()</script>
     <script src="./assets/js/main.js"></script>
 </body>
 </html>
