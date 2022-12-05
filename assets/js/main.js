@@ -131,37 +131,53 @@ function fiveDay (event) {
         })
 }
 document.querySelector('#searchBtn').addEventListener('click', fiveDay);
+
+// resets local storage
 clearBtn.addEventListener("click", function() {
     localStorage.clear();
 })
 
-var history = [
-    [0],    {
-                    'city'    :   'dallas',
-                    'state'   :   'tx'
-            }
-            
-    [1],    {
-                    'city'    :   'miami',
-                    'state'   :   'fl'
-            }
 
-    [2],    {
-                    'city'    :   'seattle',
-                    'state'   :   'wa'
-            }
-];
+
+
+// ==================  experimenting with local storage. keeping for a future date
+// var history = [
+//     [0],    {
+//                     'city'    :   'dallas',
+//                     'state'   :   'tx'
+//             }
+            
+//     [1],    {
+//                     'city'    :   'miami',
+//                     'state'   :   'fl'
+//             }
+
+//     [2],    {
+//                     'city'    :   'seattle',
+//                     'state'   :   'wa'
+//             }
+// ];
 
 
 // var city1 = (history[1].city);
 // var state1 = (history[1].state);
-var historyArray = [history];
-var i = 1
+// var historyArray = [history];
+// var i = 1
 //history.push[0]('hello');
-localStorage.setItem('history', JSON.stringify(history[0].city, history[0].state));
+// localStorage.setItem('history', JSON.stringify(history[0].city, history[0].state));
 
 //console.log(city1, state1);
 
+
+
+
+
 // had so much trouble making my for loops work that
-// i just put a hammer to this bitch and hard coded it
+// i just put a hammer to this challenge and hard coded it
+
+// also, my initial design was flawed and my skillset isn't ready to do 
+// local storage with objects, i should have limited my input box to city only.
+// having city and state has become quite problematic for me.
+// by the time i realized this, i was mostly done with my code and didn't want to
+// rewrite it.  stay tuned for version 2.0
 
