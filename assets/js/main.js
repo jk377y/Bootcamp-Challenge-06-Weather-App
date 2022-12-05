@@ -1,5 +1,5 @@
 // api key d01afd2806e508d282da4f840dd4696a
-// http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+// https://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
 function weather (event) {
     event.preventDefault;
@@ -10,7 +10,7 @@ function weather (event) {
     var stateInput = document.querySelector('#searchState').value;
     // creating api variable and the api "math" problem that will be entered into the url box
     var apiKey = 'd01afd2806e508d282da4f840dd4696a'
-    var apiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=';
+    var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=';
     var apiRequest = apiUrl + cityInput + ',' + stateInput + ',' + 'us' + '&limit=1' + '&appid=' + apiKey;
     fetch(apiRequest)
         .then(latLonResponse => {
@@ -44,7 +44,7 @@ function weather (event) {
                 document.querySelector('#todayHumidity').textContent = humidity + ' %';
                 // setting the weather icon to the current day display
                 var iconEL = document.querySelector('#todayIcon');
-                displayIcon = 'http://openweathermap.org/img/wn/' + icon + '.png';
+                displayIcon = 'https://openweathermap.org/img/wn/' + icon + '.png';
                 iconEL.setAttribute('src', displayIcon);
             })
         })
@@ -68,7 +68,7 @@ function fiveDay (event) {
             document.querySelector('#date1').textContent = date1
             var icon1 = returned.list[4].weather[0].icon;
             var iconEL1 = document.querySelector('#icon1');
-            displayIcon1 = 'http://openweathermap.org/img/wn/' + icon1 + '.png';
+            displayIcon1 = 'https://openweathermap.org/img/wn/' + icon1 + '.png';
             iconEL1.setAttribute('src', displayIcon1);
             var temp1 = returned.list[4].main.temp;
             document.querySelector('#temp1').textContent = temp1
@@ -81,7 +81,7 @@ function fiveDay (event) {
             document.querySelector('#date2').textContent = date2
             var icon2 = returned.list[12].weather[0].icon;
             var iconEL2 = document.querySelector('#icon2');
-            displayIcon2 = 'http://openweathermap.org/img/wn/' + icon2 + '.png';
+            displayIcon2 = 'https://openweathermap.org/img/wn/' + icon2 + '.png';
             iconEL2.setAttribute('src', displayIcon2);
             var temp2 = returned.list[12].main.temp;
             document.querySelector('#temp2').textContent = temp2
@@ -94,7 +94,7 @@ function fiveDay (event) {
             document.querySelector('#date3').textContent = date3
             var icon3 = returned.list[20].weather[0].icon;
             var iconEL3 = document.querySelector('#icon3');
-            displayIcon3 = 'http://openweathermap.org/img/wn/' + icon3 + '.png';
+            displayIcon3 = 'https://openweathermap.org/img/wn/' + icon3 + '.png';
             iconEL3.setAttribute('src', displayIcon3);
             var temp3 = returned.list[20].main.temp;
             document.querySelector('#temp3').textContent = temp3
@@ -107,7 +107,7 @@ function fiveDay (event) {
             document.querySelector('#date4').textContent = date4
             var icon4 = returned.list[28].weather[0].icon;
             var iconEL4 = document.querySelector('#icon4');
-            displayIcon4 = 'http://openweathermap.org/img/wn/' + icon4 + '.png';
+            displayIcon4 = 'https://openweathermap.org/img/wn/' + icon4 + '.png';
             iconEL4.setAttribute('src', displayIcon4);
             var temp4 = returned.list[28].main.temp;
             document.querySelector('#temp4').textContent = temp4
@@ -120,7 +120,7 @@ function fiveDay (event) {
             document.querySelector('#date5').textContent = date5
             var icon5 = returned.list[35].weather[0].icon;
             var iconEL5 = document.querySelector('#icon5');
-            displayIcon5 = 'http://openweathermap.org/img/wn/' + icon5 + '.png';
+            displayIcon5 = 'https://openweathermap.org/img/wn/' + icon5 + '.png';
             iconEL5.setAttribute('src', displayIcon5);
             var temp5 = returned.list[35].main.temp;
             document.querySelector('#temp5').textContent = temp5
