@@ -11,10 +11,12 @@ let getWeather = (event) => {
     dateEl.textContent = currentDate;
     // grabbing the value that is entered in the #zip textbox
     let zipInput = document.querySelector('#zip').value;
+
     // defining the api key, url, and concatonated fetch url
     let apiKey = 'd01afd2806e508d282da4f840dd4696a';
     let apiURL = 'https://api.openweathermap.org/data/2.5/forecast?zip=';
     let apiRequest = apiURL + zipInput + '&appid=' + apiKey + '&units=imperial';
+    console.log(apiRequest);
     // fetching the apiRequest url
     fetch(apiRequest)
         // returns a response in json format
@@ -37,16 +39,19 @@ let getWeather = (event) => {
         let iconSrc = data.list[0].weather[0].icon;
         //  setting text content of the declared element variables to the destructured values; rounded the temp value with Math.floor so decimal places were not used
         cityEl.textContent = citySrc;
-        tempEl.textContent = Math.floor(tempSrc) + 'º';
+        tempEl.textContent = Math.floor(tempSrc) + 'ºF';
         humidityEl.textContent = humiditySrc;
         windEl.textContent = windSrc;
         descriptionEl.textContent = descriptionSrc;
         // to display the icon, the iconSrc destructured value had to be inserted into the url to grab the image
         displayIconSrc = 'https://openweathermap.org/img/wn/' + iconSrc + '.png';
         iconEl.setAttribute('src', displayIconSrc);
-               console.log(displayIconSrc);
         // there are 40 keys in this array
         let listArray = Object.keys(data.list);
+        
+       
+        
+        
         // there are 8 keys per day (every 3 hours); for 5 days that is 40
         // index[0] is used in the current day display
         // for the loop on the 5day forecast, i am starting at index[7] and i+=8
@@ -70,24 +75,31 @@ let getWeather = (event) => {
             dayOfWeekEl.setAttribute('id', dayOfWeek);
             dayOfWeekEl.textContent = dayOfWeek;
             daysDiv.appendChild(dayOfWeekEl);
+            // for each iteration grab the description value, create a <p> element with class='forecastText' and id='descriptionOfWeek', store the value into the newly created element and add this element to daysDiv container
+            let descriptionsOfWeek = data.list[i].weather[0].main;
+            let descriptionsOfWeekEl = document.createElement('p');
+            descriptionsOfWeekEl.classList.add('forecastText', 'attribute');
+            descriptionsOfWeekEl.setAttribute('id', descriptionsOfWeek);
+            descriptionsOfWeekEl.textContent = descriptionsOfWeek;
+            daysDiv.appendChild(descriptionsOfWeekEl);
             // for each iteration grab the temperature value, create a <p> element with class='forecastText' and id='temperaturesOfWeek', store the value into the newly created element and add this element to daysDiv container
             let temperaturesOfWeek = data.list[i].main.temp;
             let temperaturesOfWeekEl = document.createElement('p');
-            temperaturesOfWeekEl.classList.add('forecastText');
+            temperaturesOfWeekEl.classList.add('forecastText', 'attribute');
             temperaturesOfWeekEl.setAttribute('id', temperaturesOfWeek);
-            temperaturesOfWeekEl.textContent = 'Temp:' + temperaturesOfWeek + 'º';
+            temperaturesOfWeekEl.textContent = 'Temp:' + temperaturesOfWeek + 'ºF';
             daysDiv.appendChild(temperaturesOfWeekEl);
             // for each iteration grab the wind speed value, create a <p> element with class='forecastText' and id='wind', store the value into the newly created element and add this element to daysDiv container
             let windsOfWeek = data.list[i].wind.speed;
             let windsOfWeekEl = document.createElement('p');
-            windsOfWeekEl.classList.add('forecastText');
+            windsOfWeekEl.classList.add('forecastText', 'attribute');
             windsOfWeekEl.setAttribute('id', windsOfWeek);
             windsOfWeekEl.textContent = 'Winds:' + windsOfWeek + 'mph';
             daysDiv.appendChild(windsOfWeekEl);
             // for each iteration grab the humidity value, create a <p> element with class='forecastText' and id='humidityOfWeek', store the value into the newly created element and add this element to daysDiv container
             let humidityOfWeek = data.list[i].main.humidity;
             let humidityOfWeekEl = document.createElement('p');
-            humidityOfWeekEl.classList.add('forecastText');
+            humidityOfWeekEl.classList.add('forecastText', 'attribute');
             humidityOfWeekEl.setAttribute('id', humidityOfWeek);
             humidityOfWeekEl.textContent = 'Humidity:' + humidityOfWeek + '%';
             daysDiv.appendChild(humidityOfWeekEl);
@@ -96,9 +108,56 @@ let getWeather = (event) => {
             fiveDay.appendChild(daysDiv);
             }
         })
+    
 };
-document.querySelector('#zipBtn').addEventListener('click', getWeather);
-let clearBtn = document.querySelector('#clearBtn')
-clearBtn.addEventListener("click", function() {
-    localStorage.clear();
-})
+document.querySelector('#zipBtn').addEventListener('click', getWeather)
+
+
+
+
+let searchHistory = localStorage.getItem('search-history');
+// If the search history exists, parse it into an array
+if (searchHistory) {
+    searchHistory = JSON.parse(searchHistory);
+} else {
+    searchHistory = [];
+}
+// Add the new search query to the search history
+searchHistory.push(zipInput);
+// Stringify the array and store it in local storage
+localStorage.setItem('search-history', JSON.stringify(searchHistory));
+// Loop over the search history array
+for (let i = 0; i < searchHistory.length; i++) {
+    // Get the current search query
+    let zipInput = searchHistory[i];
+    // Create a div element for the search query
+    let historyBtn = document.createElement('button');
+    historyBtn.innerHTML = zipInput;
+    historyBtn.classList.add('button');
+    historyBtn.setAttribute('type', submit)
+    // Add an event listener to the div element that will execute the search when the element is clicked
+    historyBtn.addEventListener('click', function() {
+        apiRequest(zipInput);
+    });
+    // Append the div element to the search history container
+    let history = document.querySelector('.history');
+    history.appendChild(historyBtn);
+}
+// Retrieve the search history from local storage
+// Define the function that will execute the search
+function executeSearch(query) {
+        // Perform the search using the API
+    // ...
+    }
+
+
+    let clearBtn = document.querySelector('#clearBtn')
+    clearBtn.addEventListener("click", function() {
+        localStorage.clear();
+        searchHistoryEl.innerHTML = '';
+
+    });
+
+
+
+

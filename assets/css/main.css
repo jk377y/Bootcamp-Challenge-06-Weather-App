@@ -1,27 +1,10 @@
-/* My styling reset */
-*, 
-*::before, 
-*::after {
-    box-sizing: border-box;
-}
 * {
-    margin: 0;
-    padding: 0;
+    padding: 0px;
+    margin: 0px;
 }
-html, body {
-    height: 100%;
+li {
+    list-style: none;
 }
-body {
-    line-height: 1.5;
-}
-img, picture, video, canvas, svg {
-    display: block;
-    max-width: 100%;
-}
-p, h1, h2, h3, h4, h5, h6 {
-overflow-wrap: break-word;
-}
-/* Custom Styling */
 :root {
     --windowColor: rgba(94, 154, 211, 0.589);;
     --bgcolor: rgb(56, 56, 56);
@@ -35,39 +18,37 @@ overflow-wrap: break-word;
     --insetBorder: silver;
     --navBackground: rgba(114, 189, 233, 0);
 }
-.body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--bgcolor);
-    width: 100%;
-    height: 100%;
+body {
+    height: 100vh;
+    width: 100vw;
     background-image: url(../images/clouds4.jpg);
     background-size: cover;
-    background-position: center;   
+    background-position: center;
 }
-.header {
+header {
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    background-color: var(--windowColor);
-    border-radius: 30px;
-    border: 4px solid var(--border);
-    border-radius: 30px;
-    box-shadow: 1px 1px 5px 1px;
-    height: 15%;
-    width: 90%;
-    max-width: 350px;
-    margin-top: 10px;
-    justify-content: space-between;
-}
-.title {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
 }
-.titleName {
-    font-size: 20px;
+.header {
+    border: 4px solid var(--blackText);
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px 1px;
+    background-color: var(--windowColor);
+    display: flex;
+    justify-content: space-between;
+    width: 96%;
+    height: 100px;
+    margin: 10px;
+    padding: 5px;
+}
+.title {
     text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.titleName {
+    font-size: 28px;
 }
 .byJames {
     font-size: 14px;
@@ -77,21 +58,36 @@ overflow-wrap: break-word;
 }
 .img1, .img2 {
     border-radius: 20px;
-    padding: 10px;
+    height: auto;
 }
 .content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-h2 {
-    text-align: center;
+    /* background-color: var(--windowColor); */
+    /* border: 4px solid var(--blackText);
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px 1px; */
+    margin: 10px;
+    padding: 5px;
+    margin-bottom: 30px;
 }
 .searchContainer {
     display: flex;
     flex-direction: column;
-    width: 90%;
-    align-self: center;
+}
+.weatherContainer {
+    display: flex;
+    flex-direction: column;
+}
+.todayContainer {
+    width: 100%;
+}
+.todayQry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+h2 {
+    text-align: center;
 }
 .searchZip {
     height: 2rem;
@@ -99,6 +95,7 @@ h2 {
     text-align: center;
     font-weight: bold;
     border: inset 3px gray;
+    width: 90%;
     max-width: 350px;
     align-self: center;
 }
@@ -107,43 +104,9 @@ h2 {
     max-width: 200px;
     align-self: center;
 }
-.happyPic {
-    background-image: url(../images/bbq.jpg);
-    background-size: 100%;
-    width: 50%;
-    border-radius: 30px;
-    margin: 10px;
-    padding: 30px;
-    border: 4px solid var(--blackText);
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px 1px;
-}
-.weatherContainter {
-    /* display: flex;
-    flex-direction: column;
-    width: 100%; */
-}
-.todayContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: auto;
-}
-.todayQry {
-    width: 90%;
-    max-width: 450px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    background-color: var(--windowColor);
-    border-radius: 30px;
-    border: 4px solid var(--blackText);
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px 1px;
-    list-style: none;
-}
+
 .city {
+    margin-top: 20px;
     font-size: 24px;
     font-weight: bold;
 }
@@ -152,61 +115,47 @@ h2 {
     font-weight: bold;
 }
 .power {
-    width: 90%;
-    max-width: 450px;
-    background-color: var(--whiteText);
-    border-radius: 30px;
-    align-self: center;
-    text-align: center;
-    margin-top: 10px;
-    padding: 10px;
-    height: 100%;
-    border: 4px solid var(--blackText);
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px 1px;
-}
-.fiveDayTitle {
-    font-size: 20px;
-}
-.fiveDayContainer {
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin-bottom: 50px;
+    justify-content: center;
+    background-color: var(--whiteText);
+    border-radius: 30px;
+    text-align: center;
+    border: 2px solid var(--blackText);
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px 1px;
+    height: 100px;
+}
+.fiveDayContainer {
+    margin-top: 20px;
 }
 .fiveDay {
     display: flex;
     flex-direction: column;
-    width: 90%;
-    align-self: center;
+    align-items: center;
 }
 .days {
-    display: flex;
-    flex-direction: column;
     text-align: center;
-    margin-top: 30px;
-    width: 75%;
-    max-width: 450px;
-    align-self: center;
     border-radius: 30px;
-    border: 4px solid var(--blackText);
+    border: 2px solid var(--blackText);
     border-radius: 30px;
     box-shadow: 1px 1px 5px 1px;
     background-color: var(--windowColor);
+    width: 60%;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding-bottom: 20px;
 }
 .icon {
-    width: 100px;
+    width: 50px;
 }
 .forecastText {
     font-weight: bold;
-    width: 100%;
-    /* background-color: var(--cloudGray); */
 }
 #Sunday, #Monday, #Tuesday, #Wednesday, #Thursday, #Friday, #Saturday {
     font-size: 24px;
     color: white;
+    margin-bottom: 10px;
 }
 .button {
     color: var(--blackText);
@@ -230,14 +179,239 @@ a:visited {
     border: 2px solid dodgerblue;
     font-size: 24px;
 }
-.footer {
-    
+.hide {
+    display: none;
+}
+/* when between 648px and 800px this happens */
+@media screen and (min-width: 648px) and (max-width: 800px) {
+    .content {
+        display: flex;
+        flex-direction: row;
+        height: auto;
+    }
+    .searchContainer {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--windowColor);
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+        margin: 10px;
+        padding: 5px;
+        width: 25%;
+    }
+    .weatherContainer {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--windowColor);
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+        margin: 10px;
+        padding: 5px;
+        width: 75%;
+    }
+    .todayContainer {
+        display: flex;
+        justify-content: space-between;
+    }
+    .todayQry {
+        text-align: center;
+        background-color: var(--windowColor);
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+        margin: 10px;
+        padding: 5px;
+        height: 85%;
+        width: 60%;
+    }
+    .power {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+        margin: 10px;
+        padding: 5px;
+        height: 85%;
+    }
+}
+/* when between 800px and 1100px this happens */
+@media screen and (min-width: 801px) and (max-width: 1100px) {
+    .content {
+        display: flex;
+        flex-direction: row;
+        height: auto;
+    }
+    .searchContainer {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--windowColor);
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+        margin: 10px;
+        padding: 5px;
+        width: 25%;
+    }
+    .weatherContainer {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--windowColor);
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+        margin: 10px;
+        padding: 5px;
+        width: 75%;
+    }
+    .todayContainer {
+        display: flex;
+        justify-content: space-between;
+    }
+    .todayQry {
+        text-align: center;
+        background-color: var(--windowColor);
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+        margin: 10px;
+        padding: 5px;
+        height: 85%;
+        width: 60%;
+    }
+    .power {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+        margin: 10px;
+        padding: 5px;
+        height: 85%;
+    }
+    .fiveDayContainer {
+        width: 100%;
+    }
+    .fiveDay {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+    }
+    .days {
+        width: 18%;
+    }
+    .forecastText {
+        font-size: 16px;
+    }
+    .attribute {
+        font-size: 12px;
+    }
 }
 
 
 
 
 
-.hide {
-    display: none;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* when greater than 1100 this happens */
+@media screen and (min-width: 1101px){
+    .content {
+        display: flex;
+        flex-direction: row;
+        height: auto;
+    }
+    .searchContainer {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--windowColor);
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+        margin: 10px;
+        padding: 5px;
+        width: 25%;
+    }
+    .weatherContainer {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--windowColor);
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+        margin: 10px;
+        padding: 5px;
+        width: 75%;
+    }
+    .todayContainer {
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    .todayQry {
+        text-align: center;
+        /* background-color: var(--windowColor);
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px; */
+        margin: 10px;
+        padding: 5px;
+        height: 85%;
+        width: 25%;
+        background-color: var(--windowColor);
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+    }
+    .icon5 {
+        width: 75px;
+    }
+    .power {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+        margin: 10px;
+        padding: 5px;
+        height: 85%;
+        width: 25%;
+    }
+    .fiveDay {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .days {
+        width: 15%;
+    }
+    .bbq {
+        display: flex;
+        /* height: 246px; */
+        width: 40%;
+        background-color: var(--windowColor);
+        border: 4px solid var(--blackText);
+        border-radius: 20px;
+        box-shadow: 1px 1px 5px 1px;
+        margin: 10px;
+        /* padding: 5px; */
+    }
 }

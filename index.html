@@ -9,13 +9,15 @@
     <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 <body class="body">
-    <header class="header">
-        <img class='img1' src="./assets/images/hot.png" alt="hot thermometer">
-        <div class="title">
-            <h1 class="titleName">5 Day Weather</h1>
-            <a href="https://github.com/jk377y" target="_blank" class="byJames fa-github fab"><span>   by jk377y</span></a>
+    <header>
+        <div class="header">
+            <img class='img1' src="./assets/images/hot.png" alt="hot thermometer">
+            <div class="title">
+                <h1 class="titleName">5 Day Weather</h1>
+                <a href="https://github.com/jk377y" target="_blank" class="byJames fa-github fab"><span>   by jk377y</span></a>
+            </div>
+            <img class='img2' src="./assets/images/cold.png" alt="cold thermometer">
         </div>
-        <img class='img2' src="./assets/images/cold.png" alt="cold thermometer">
     </header>
     <section class="content">
         <div class="searchContainer">
@@ -37,7 +39,7 @@
                     <li class="font2">Wind:  <span id="wind"></span></li>
                     <li class="font2">Humidity:  <span id="humidity" ></span></li>
                 </ul>
-                <div class="happyPic hide"></div>
+                <img src="./assets/images/bbq.jpg" alt="backyard bbq" class="bbq hide">
                 <div class="power">
                     <span class="font2">Powered By:</span><br><a href="https://openweathermap.org" target="_blank"><span class="font2">openweathermap.org</span></a>
                 </div>
@@ -48,8 +50,8 @@
                 </div>
                 <div class="fiveDay"></div>
             </div>
-        </div>
-    </div>
+        </section>
+    </section>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script>dayjs().format()</script>
     <script src="./assets/js/main.js"></script>
