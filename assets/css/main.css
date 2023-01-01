@@ -23,7 +23,7 @@ overflow-wrap: break-word;
 }
 /* Custom Styling */
 :root {
-    --windowColor: rgba(94, 154, 211, 0.315);;
+    --windowColor: rgba(94, 154, 211, 0.589);;
     --bgcolor: rgb(56, 56, 56);
     --border: rgb(37, 97, 138);
     --hover: rgb(255, 255, 0);
@@ -44,8 +44,7 @@ overflow-wrap: break-word;
     height: 100%;
     background-image: url(../images/clouds4.jpg);
     background-size: cover;
-    background-position: center;
-    
+    background-position: center;   
 }
 .header {
     display: flex;
@@ -83,7 +82,6 @@ overflow-wrap: break-word;
 .content {
     display: flex;
     flex-direction: column;
-    
     width: 100%;
 }
 h2 {
@@ -145,6 +143,14 @@ h2 {
     box-shadow: 1px 1px 5px 1px;
     list-style: none;
 }
+.city {
+    font-size: 24px;
+    font-weight: bold;
+}
+.font2 {
+    font-size: 20px;
+    font-weight: bold;
+}
 .power {
     width: 90%;
     max-width: 450px;
@@ -167,6 +173,7 @@ h2 {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 50px;
 }
 .fiveDay {
     display: flex;
@@ -179,19 +186,28 @@ h2 {
     flex-direction: column;
     text-align: center;
     margin-top: 30px;
+    width: 75%;
+    max-width: 450px;
+    align-self: center;
+    border-radius: 30px;
+    border: 4px solid var(--blackText);
+    border-radius: 30px;
+    box-shadow: 1px 1px 5px 1px;
+    background-color: var(--windowColor);
+    padding-bottom: 20px;
 }
-
-.footer {
-    
+.icon {
+    width: 100px;
 }
-
-
-
-
-
-
-
-
+.forecastText {
+    font-weight: bold;
+    width: 100%;
+    /* background-color: var(--cloudGray); */
+}
+#Sunday, #Monday, #Tuesday, #Wednesday, #Thursday, #Friday, #Saturday {
+    font-size: 24px;
+    color: white;
+}
 .button {
     color: var(--blackText);
     background-color: var(--navBackground);
@@ -203,53 +219,24 @@ h2 {
     box-shadow: 1px 1px 5px 1px;
     font-size: 18px;
 }
-
-
-
-
-
-
 a:visited {
     text-decoration: none;
 }
-
 .button:hover {
-    color: var(--whiteText);
+    color: dodgerblue;
     cursor: pointer;
     text-decoration: none;
     box-shadow: 1px 1px 5px 1px;
-    border: 2px solid white;
+    border: 2px solid dodgerblue;
     font-size: 24px;
 }
-
-.city {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.icon, .icon5 {
-    background-color: var(--cloudGray);
-}
-.icon5 {
-    width: 50px;
-    height: auto;
-}
-
-
-.font24 {
-    font-size: 24px;
-}
-
-div ul {
-    list-style: none;
-}
-
-
-.forecastText {
+.footer {
     
-    width: 100%;
 }
+
+
+
+
 
 .hide {
     display: none;
