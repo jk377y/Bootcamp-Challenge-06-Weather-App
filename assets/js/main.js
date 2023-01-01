@@ -1,183 +1,104 @@
+// Powered by OpenWeatherMap.org
 // api key d01afd2806e508d282da4f840dd4696a
-// https://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+// api.openweathermap.org/data/2.5/forecast?zip={zip code},{country code}&appid={API key}
 
-function weather (event) {
+// getting started, naming the function getWeather, using a prevent default since i'm using a submit button
+let getWeather = (event) => {
     event.preventDefault;
-    var todayDate = document.getElementById('todayDate');
-    todayDate.textContent = dayjs().format('MMMM D YYYY');
-    // creating variables that will be used to set query parameters
-    var cityInput = document.querySelector('#searchCity').value;
-    var stateInput = document.querySelector('#searchState').value;
-    // creating api variable and the api "math" problem that will be entered into the url box
-    var apiKey = 'd01afd2806e508d282da4f840dd4696a'
-    var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=';
-    var apiRequest = apiUrl + cityInput + ',' + stateInput + ',' + 'us' + '&limit=1' + '&appid=' + apiKey;
+    // using dayjs to place the current date in the #date 
+    let dateEl = document.querySelector('#date');
+    let currentDate = dayjs().format('dddd, MMMM DD, YYYY');
+    dateEl.textContent = currentDate;
+    // grabbing the value that is entered in the #zip textbox
+    let zipInput = document.querySelector('#zip').value;
+    // defining the api key, url, and concatonated fetch url
+    let apiKey = 'd01afd2806e508d282da4f840dd4696a';
+    let apiURL = 'https://api.openweathermap.org/data/2.5/forecast?zip=';
+    let apiRequest = apiURL + zipInput + '&appid=' + apiKey + '&units=imperial';
+    // fetching the apiRequest url
     fetch(apiRequest)
-        .then(latLonResponse => {
-            //this logs the status response from the page
-            return latLonResponse.json();
+        // returns a response in json format
+        .then(apiRequestResponse => apiRequestResponse.json())
+        // processing that data
+        .then(data => {        
+        // declaring variables to represent various elements in the DOM
+        let cityEl = document.querySelector('#city');
+        let tempEl = document.querySelector('#temp');
+        let humidityEl = document.querySelector('#humidity');
+        let windEl = document.querySelector('#wind');
+        let descriptionEl = document.querySelector('#description');
+        let iconEl = document.querySelector('#icon');
+        // destructing the data object for the values i want to use; index[0] for todays stats
+        let citySrc = data.city.name;
+        let tempSrc = data.list[0].main.temp;
+        let humiditySrc = data.list[0].main.humidity;
+        let windSrc = data.list[0].wind.speed;
+        let descriptionSrc = data.list[0].weather[0].main;
+        let iconSrc = data.list[0].weather[0].icon;
+        //  setting text content of the declared element variables to the destructured values; rounded the temp value with Math.floor so decimal places were not used
+        cityEl.textContent = citySrc;
+        tempEl.textContent = Math.floor(tempSrc) + 'º';
+        humidityEl.textContent = humiditySrc;
+        windEl.textContent = windSrc;
+        descriptionEl.textContent = descriptionSrc;
+        // to display the icon, the iconSrc destructured value had to be inserted into the url to grab the image
+        displayIconSrc = 'https://openweathermap.org/img/wn/' + iconSrc + '.png';
+        iconEl.setAttribute('src', displayIconSrc);
+               console.log(displayIconSrc);
+        // there are 40 keys in this array
+        let listArray = Object.keys(data.list);
+        // there are 8 keys per day (every 3 hours); for 5 days that is 40
+        // index[0] is used in the current day display
+        // for the loop on the 5day forecast, i am starting at index[7] and i+=8
+        for (i=7; i<listArray.length; i+=8){
+            // i start by creating a div for each iteration
+            let daysDiv = document.createElement('div');
+            daysDiv.classList.add('days');
+            // for each iteration, creating an img element, grabbing the icon value and concatonating it into the url to grab the image, and adding classes of forecastText and icon5
+            let iconsOfWeek = data.list[i].weather[0].icon;
+            let iconEl = document.createElement('img');
+            iconEl.src = 'https://openweathermap.org/img/wn/' + iconsOfWeek + '.png';
+            iconEl.classList.add('forecastText', 'icon5');
+            // adding iconEl to the iteration div
+            daysDiv.appendChild(iconEl);
+            // for each iteration, create a dayjs object to give the day only, creating a <p> element with the class='forecastText' and id='day', setting the textContent of the element to this dayjs 'dddd' format, then adding this dayOfWeekEl to the iteration div
+            let date = new Date(data.list[i].dt * 1000);
+            let dayjsDate = dayjs(date);
+            let dayOfWeek = dayjsDate.format('dddd');
+            let dayOfWeekEl = document.createElement('p');
+            dayOfWeekEl.classList.add('forecastText');
+            dayOfWeekEl.setAttribute('id', dayOfWeek);
+            dayOfWeekEl.textContent = dayOfWeek;
+            daysDiv.appendChild(dayOfWeekEl);
+            // for each iteration grab the temperature value, create a <p> element with class='forecastText' and id='temperaturesOfWeek', store the value into the newly created element and add this element to daysDiv container
+            let temperaturesOfWeek = data.list[i].main.temp;
+            let temperaturesOfWeekEl = document.createElement('p');
+            temperaturesOfWeekEl.classList.add('forecastText');
+            temperaturesOfWeekEl.setAttribute('id', temperaturesOfWeek);
+            temperaturesOfWeekEl.textContent = 'Temp:' + temperaturesOfWeek + 'º';
+            daysDiv.appendChild(temperaturesOfWeekEl);
+            // for each iteration grab the wind speed value, create a <p> element with class='forecastText' and id='wind', store the value into the newly created element and add this element to daysDiv container
+            let windsOfWeek = data.list[i].wind.speed;
+            let windsOfWeekEl = document.createElement('p');
+            windsOfWeekEl.classList.add('forecastText');
+            windsOfWeekEl.setAttribute('id', windsOfWeek);
+            windsOfWeekEl.textContent = 'Winds:' + windsOfWeek + 'mph';
+            daysDiv.appendChild(windsOfWeekEl);
+            // for each iteration grab the humidity value, create a <p> element with class='forecastText' and id='humidityOfWeek', store the value into the newly created element and add this element to daysDiv container
+            let humidityOfWeek = data.list[i].main.humidity;
+            let humidityOfWeekEl = document.createElement('p');
+            humidityOfWeekEl.classList.add('forecastText');
+            humidityOfWeekEl.setAttribute('id', humidityOfWeek);
+            humidityOfWeekEl.textContent = 'Humidity:' + humidityOfWeek + '%';
+            daysDiv.appendChild(humidityOfWeekEl);
+            // take each daysDiv that has been created and put it into the fiveDay element on the DOM
+            let fiveDay = document.querySelector('.fiveDay');
+            fiveDay.appendChild(daysDiv);
+            }
         })
-        .then(dataReturned => {
-            //creates latitude and longitude variables
-            var lon = dataReturned[0].lon;
-            var lat = dataReturned[0].lat;
-            // creating api fetch using lat and lon parameters
-            var apiKey = 'd01afd2806e508d282da4f840dd4696a'
-            var currentWeatherURL = 'https://api.openweathermap.org/data/2.5/weather?lat='
-            var currentWeatherURLRequest = currentWeatherURL + lat + '&lon=' + lon + '&appid=' + apiKey + '&units=imperial';
-            // returning response from the queried parameters
-            fetch(currentWeatherURLRequest)
-            .then(currentResponse => {
-                return currentResponse.json();
-            })
-            // deconstructing the returned object to the values i need
-            .then(currentDataReturned => {
-                var temp = currentDataReturned.main.temp;
-                var humidity = currentDataReturned.main.humidity;
-                var wind = currentDataReturned.wind.speed;
-                var icon = currentDataReturned.weather[0].icon;
-                // the queried city is assigned to the "current" weather box, along with the values retreived from above
-                var cityInput = document.querySelector('#searchCity').value;
-                document.querySelector('#city').textContent = cityInput.toUpperCase();
-                document.querySelector('#todayTemp').textContent = temp + '  °F';           
-                document.querySelector('#todayWind').textContent = wind + '  mph';
-                document.querySelector('#todayHumidity').textContent = humidity + ' %';
-                // setting the weather icon to the current day display
-                var iconEL = document.querySelector('#todayIcon');
-                displayIcon = 'https://openweathermap.org/img/wn/' + icon + '.png';
-                iconEL.setAttribute('src', displayIcon);
-            })
-        })
-// =============== fetching 5 day =======================    
-}
-document.querySelector('#searchBtn').addEventListener('click', weather);
-function fiveDay (event) {
-    event.preventDefault;
-    var cityInput = document.querySelector('#searchCity').value;
-    var stateInput = document.querySelector('#searchState').value;
-    var apiKey = 'd01afd2806e508d282da4f840dd4696a';
-    var fiveDayUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=';
-    var fiveDayRequest = fiveDayUrl + cityInput + ',' + stateInput + ',us&appid=' + apiKey + '&units=imperial';
-    fetch(fiveDayRequest)       
-        .then(fiveDayResponse => {
-            return fiveDayResponse.json();
-        })
-        .then(returned => {
-            //========== day1
-            var date1 = dayjs(returned.list[4].dt_txt).format('MM/DD/YYYY');
-            document.querySelector('#date1').textContent = date1
-            var icon1 = returned.list[4].weather[0].icon;
-            var iconEL1 = document.querySelector('#icon1');
-            displayIcon1 = 'https://openweathermap.org/img/wn/' + icon1 + '.png';
-            iconEL1.setAttribute('src', displayIcon1);
-            var temp1 = returned.list[4].main.temp;
-            document.querySelector('#temp1').textContent = temp1
-            var wind1 = returned.list[4].wind.speed;
-            document.querySelector('#wind1').textContent = wind1
-            var humidity1 = returned.list[4].main.humidity;
-            document.querySelector('#hum1').textContent = humidity1
-            //========== day2
-            var date2 = dayjs(returned.list[12].dt_txt).format('MM/DD/YYYY');
-            document.querySelector('#date2').textContent = date2
-            var icon2 = returned.list[12].weather[0].icon;
-            var iconEL2 = document.querySelector('#icon2');
-            displayIcon2 = 'https://openweathermap.org/img/wn/' + icon2 + '.png';
-            iconEL2.setAttribute('src', displayIcon2);
-            var temp2 = returned.list[12].main.temp;
-            document.querySelector('#temp2').textContent = temp2
-            var wind2 = returned.list[12].wind.speed;
-            document.querySelector('#wind2').textContent = wind2
-            var humidity2 = returned.list[12].main.humidity;
-            document.querySelector('#hum2').textContent = humidity2
-            //========== day3
-            var date3 = dayjs(returned.list[20].dt_txt).format('MM/DD/YYYY');
-            document.querySelector('#date3').textContent = date3
-            var icon3 = returned.list[20].weather[0].icon;
-            var iconEL3 = document.querySelector('#icon3');
-            displayIcon3 = 'https://openweathermap.org/img/wn/' + icon3 + '.png';
-            iconEL3.setAttribute('src', displayIcon3);
-            var temp3 = returned.list[20].main.temp;
-            document.querySelector('#temp3').textContent = temp3
-            var wind3 = returned.list[20].wind.speed;
-            document.querySelector('#wind3').textContent = wind3
-            var humidity3 = returned.list[20].main.humidity;
-            document.querySelector('#hum3').textContent = humidity3
-            //========== day4
-            var date4 = dayjs(returned.list[28].dt_txt).format('MM/DD/YYYY');
-            document.querySelector('#date4').textContent = date4
-            var icon4 = returned.list[28].weather[0].icon;
-            var iconEL4 = document.querySelector('#icon4');
-            displayIcon4 = 'https://openweathermap.org/img/wn/' + icon4 + '.png';
-            iconEL4.setAttribute('src', displayIcon4);
-            var temp4 = returned.list[28].main.temp;
-            document.querySelector('#temp4').textContent = temp4
-            var wind4 = returned.list[28].wind.speed;
-            document.querySelector('#wind4').textContent = wind4
-            var humidity4 = returned.list[28].main.humidity;
-            document.querySelector('#hum4').textContent = humidity4
-            //========== day5
-            var date5 = dayjs(returned.list[35].dt_txt).format('MM/DD/YYYY');
-            document.querySelector('#date5').textContent = date5
-            var icon5 = returned.list[35].weather[0].icon;
-            var iconEL5 = document.querySelector('#icon5');
-            displayIcon5 = 'https://openweathermap.org/img/wn/' + icon5 + '.png';
-            iconEL5.setAttribute('src', displayIcon5);
-            var temp5 = returned.list[35].main.temp;
-            document.querySelector('#temp5').textContent = temp5
-            var wind5 = returned.list[35].wind.speed;
-            document.querySelector('#wind5').textContent = wind5
-            var humidity5 = returned.list[35].main.humidity;
-            document.querySelector('#hum5').textContent = humidity5
-        })
-}
-document.querySelector('#searchBtn').addEventListener('click', fiveDay);
-
-// resets local storage
+};
+document.querySelector('#zipBtn').addEventListener('click', getWeather);
+let clearBtn = document.querySelector('#clearBtn')
 clearBtn.addEventListener("click", function() {
     localStorage.clear();
 })
-
-
-
-
-// ==================  experimenting with local storage. keeping for a future date
-// var history = [
-//     [0],    {
-//                     'city'    :   'dallas',
-//                     'state'   :   'tx'
-//             }
-            
-//     [1],    {
-//                     'city'    :   'miami',
-//                     'state'   :   'fl'
-//             }
-
-//     [2],    {
-//                     'city'    :   'seattle',
-//                     'state'   :   'wa'
-//             }
-// ];
-
-
-// var city1 = (history[1].city);
-// var state1 = (history[1].state);
-// var historyArray = [history];
-// var i = 1
-//history.push[0]('hello');
-// localStorage.setItem('history', JSON.stringify(history[0].city, history[0].state));
-
-//console.log(city1, state1);
-
-
-
-
-
-// had so much trouble making my for loops work that
-// i just put a hammer to this challenge and hard coded it
-
-// also, my initial design was flawed and my skillset isn't ready to do 
-// local storage with objects, i should have limited my input box to city only.
-// having city and state has become quite problematic for me.
-// by the time i realized this, i was mostly done with my code and didn't want to
-// rewrite it.  stay tuned for version 2.0
-

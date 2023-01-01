@@ -16,18 +16,13 @@
     </header>
     <section class="searchContainer">
         <div class="searchDiv">
-            <h2>Enter a City and State:</h2>
-            <input type="text" id="searchCity" class="searchCity" placeholder="Enter City Here">
-            <input type="text" id="searchState" class="searchState" placeholder="Enter State Abbreviation Here (Ex. TX)">
-            <button type="submit" id="searchBtn" class="search searchBtn button">Search for your location</button>
+            <h2>Enter your zip code:</h2>
+            <input type="text" id="zip" class="searchCity" placeholder="Enter Zip Code Here">
+            <button type="submit" id="zipBtn" class="search searchBtn button">Get the weather!!!</button>
         </div>
         <!-- will be used in future update for local storage/history searches -->
         <ul class="prevDiv">
-            <li class="cityBtn hide"><button id="prevOne" class="prevOne button">Smallville</button></li>
-            <li class="cityBtn hide"><button id="prevTwo" class="prevTwo button">Gotham</button></li>
-            <li class="cityBtn hide"><button id="prevThree" class="prevThree button">OZ</button></button></li>
-            <li class="cityBtn hide"><button id="prevFour" class="prevFour button">Silver</button></li>
-            <li class="cityBtn hide"><button id="prevFive" class="prevFive button">Bum Fuckt Egypt</button></li>
+            <li class="cityBtn locationItem"><button class="prevCity button"></button></li>
         </ul>
         <div class="clearDiv">
             <button type="submit" id="clearBtn" class="clearBtn button">Clear your history</button>
@@ -37,11 +32,12 @@
         
         <!-- todo: -->
         <ul id="todayQry" class="todayQry">
-            <li id="city" class="city"></li><span id="todayDate" class="todayDate"></span>
-            <li class="todayIcon"><img id="todayIcon" class="iconBG"></img></li>
-            <li class="todayTemp">Temperature:   <span id="todayTemp"></span></li>
-            <li class="todayWind">Wind:  <span id="todayWind"></span></li>
-            <li class="todayHumidity">Humidity:  <span id="todayHumidity" ></span></li>
+            <li id="city" class="city"></li><span id="date" class="todayDate"></span>
+            <li id="description"></li>
+            <li><img id="icon" class="icon"></img></li>
+            <li class="font24">Temperature:   <span id="temp"></span></li>
+            <li class="font24">Wind:  <span id="wind"></span></li>
+            <li class="font24">Humidity:  <span id="humidity" ></span></li>
         </ul>
         <div class="happyPic"></div>
         <div class="power">
@@ -52,43 +48,7 @@
         <div class="fiveDayTitle">
             <h2>5 Day Forecast</h2>
         </div>
-        <div class="fiveDay">
-            <ul class="plusOne">
-                <li class="forecastText"><img id="icon1" class="fiveDayText iconBG"></img></span></li>
-                <li class="forecastText">Date:   <span id="date1" class="fiveDayText"></span></li>
-                <li class="forecastText">Temperature:   <span id="temp1" class="fiveDayText"></span></li>
-                <li class="forecastText">Wind:   <span id="wind1" class="fiveDayText"></span></li>
-                <li class="forecastText">Humidity:   <span id="hum1" class="fiveDayText"></span></li>
-            </ul>
-            <ul class="plusTwo">
-                <li class="forecastText"><img id="icon2" class="fiveDayText iconBG"></img></li>
-                <li class="forecastText">Date:   <span id="date2" class="fiveDayText"></span></li>
-                <li class="forecastText">Temperature:   <span id="temp2" class="fiveDayText"></span></li>
-                <li class="forecastText">Wind:   <span id="wind2" class="fiveDayText"></span></li>
-                <li class="forecastText">Humidity:   <span id="hum2" class="fiveDayText"></span></li>
-            </ul>
-            <ul class="plusThree">
-                <li class="forecastText"><img id="icon3" class="fiveDayText iconBG"></img></li>
-                <li class="forecastText">Date:   <span id="date3" class="fiveDayText"></span></li>
-                <li class="forecastText">Temperature:   <span id="temp3" class="fiveDayText"></span></li>
-                <li class="forecastText">Wind:   <span id="wind3" class="fiveDayText"></span></li>
-                <li class="forecastText">Humidity:   <span id="hum3" class="fiveDayText"></span></li>
-            </ul>
-            <ul class="plusFour">
-                <li class="forecastText"><img id="icon4" class="fiveDayText iconBG"></img></li>
-                <li class="forecastText">Date:   <span id="date4" class="fiveDayText"></span></li>
-                <li class="forecastText">Temperature:   <span id="temp4" class="fiveDayText"></span></li>
-                <li class="forecastText">Wind:   <span id="wind4" class="fiveDayText"></span></li>
-                <li class="forecastText">Humidity:   <span id="hum4" class="fiveDayText"></span></li>
-            </ul>
-            <ul class="plusFive">
-                <li class="forecastText"><img id="icon5" class="fiveDayText iconBG"></img></li>
-                <li class="forecastText">Date:   <span id="date5" class="fiveDayText"></span></li>
-                <li class="forecastText">Temperature:   <span id="temp5" class="fiveDayText"></span></li>
-                <li class="forecastText">Wind:   <span id="wind5" class="fiveDayText"></span></li>
-                <li class="forecastText">Humidity:   <span id="hum5" class="fiveDayText"></span></li>
-            </ul>
-        </div>
+        <div class="fiveDay"></div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script>dayjs().format()</script>

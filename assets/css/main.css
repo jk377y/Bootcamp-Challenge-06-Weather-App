@@ -254,12 +254,17 @@ a:visited {
     margin-bottom: 30px;
 }
 
-.iconBG {
+.icon, .icon5 {
     background-color: var(--cloudGray);
 }
+.icon5 {
+    width: 50px;
+    height: auto;
+}
 
-.todayTemp, .todayWind, .todayHumidity {
-    font-size: 18px;
+
+.font24 {
+    font-size: 24px;
 }
 
 div ul {
@@ -273,7 +278,7 @@ div ul {
 .fiveDay {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 70%;
 }
 
@@ -293,8 +298,7 @@ div ul {
 }
 
 .forecastText {
-    display: flex;
-    justify-content: space-between;
+    
     width: 100%;
 }
 
