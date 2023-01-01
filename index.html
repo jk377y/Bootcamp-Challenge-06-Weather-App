@@ -9,47 +9,47 @@
     <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 <body class="body">
-    <header id="header" class="header">
-        <img src="./assets/images/hot.png" alt="hot thermometer">
-        <h1 id="titleName" class="titleName">5 Day Weather Forecast   <a href="https://github.com/jk377y" target="_blank" class="byJames fa-github fab"><span>   by jk377y</span></a></h1>
-        <img src="./assets/images/cold.png" alt="cold thermometer">
-    </header>
-    <section class="searchContainer">
-        <div class="searchDiv">
-            <h2>Enter your zip code:</h2>
-            <input type="text" id="zip" class="searchCity" placeholder="Enter Zip Code Here">
-            <button type="submit" id="zipBtn" class="search searchBtn button">Get the weather!!!</button>
+    <header class="header">
+        <img class='img1' src="./assets/images/hot.png" alt="hot thermometer">
+        <div class="title">
+            <h1 class="titleName">5 Day Weather</h1>
+            <a href="https://github.com/jk377y" target="_blank" class="byJames fa-github fab"><span>   by jk377y</span></a>
         </div>
-        <!-- will be used in future update for local storage/history searches -->
-        <ul class="prevDiv">
-            <li class="cityBtn locationItem"><button class="prevCity button"></button></li>
-        </ul>
-        <div class="clearDiv">
+        <img class='img2' src="./assets/images/cold.png" alt="cold thermometer">
+    </header>
+    <section class="content">
+        <div class="searchContainer">
+            <h2>Enter your zip code:</h2>
+            <input type="text" id="zip" class="searchZip" placeholder="Enter Zip Code Here">
+            <button type="submit" id="zipBtn" class="searchBtn button">Get the weather!!!</button>
+            <div class="history">
+                <button type="submit" id="prevCity" class="cityBtn prevCity button hide"></button>
+            </div>
             <button type="submit" id="clearBtn" class="clearBtn button">Clear your history</button>
         </div>
-    </section>
-    <section id="todayContainer" class="todayContainer">
-        
-        <!-- todo: -->
-        <ul id="todayQry" class="todayQry">
-            <li id="city" class="city"></li><span id="date" class="todayDate"></span>
-            <li id="description"></li>
-            <li><img id="icon" class="icon"></img></li>
-            <li class="font24">Temperature:   <span id="temp"></span></li>
-            <li class="font24">Wind:  <span id="wind"></span></li>
-            <li class="font24">Humidity:  <span id="humidity" ></span></li>
-        </ul>
-        <div class="happyPic"></div>
-        <div class="power">
-            <span class="pOne">Powered By:</span><br><a href="https://openweathermap.org" target="_blank"><span class="pTwo">openweathermap.org</span></a>
+        <section class="weatherContainer">
+            <div class="todayContainer">
+                <ul class="todayQry">
+                    <li id="city" class="city"></li><span id="date" class="todayDate"></span>
+                    <li id="description"></li>
+                    <li><img id="icon" class="icon"></img></li>
+                    <li class="font24">Temperature:   <span id="temp"></span></li>
+                    <li class="font24">Wind:  <span id="wind"></span></li>
+                    <li class="font24">Humidity:  <span id="humidity" ></span></li>
+                </ul>
+                <div class="happyPic hide"></div>
+                <div class="power">
+                    <span class="pOne">Powered By:</span><br><a href="https://openweathermap.org" target="_blank"><span class="pTwo">openweathermap.org</span></a>
+                </div>
+            </div>
+            <div id="fiveDayContainer" class="fiveDayContainer">
+                <div class="fiveDayTitle">
+                    <h2>5 Day Forecast</h2>
+                </div>
+                <div class="fiveDay"></div>
+            </div>
         </div>
-    </section>
-    <section id="fiveDayContainer" class="fiveDayContainer">
-        <div class="fiveDayTitle">
-            <h2>5 Day Forecast</h2>
-        </div>
-        <div class="fiveDay"></div>
-    </section>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script>dayjs().format()</script>
     <script src="./assets/js/main.js"></script>

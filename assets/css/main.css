@@ -3,30 +3,24 @@
 *::before, 
 *::after {
     box-sizing: border-box;
-  }
-
+}
 * {
     margin: 0;
     padding: 0;
 }
-
 html, body {
     height: 100%;
 }
-
 body {
     line-height: 1.5;
 }
-
 img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
 }
-
 p, h1, h2, h3, h4, h5, h6 {
 overflow-wrap: break-word;
 }
-
 /* Custom Styling */
 :root {
     --windowColor: rgba(94, 154, 211, 0.315);;
@@ -42,63 +36,79 @@ overflow-wrap: break-word;
     --navBackground: rgba(114, 189, 233, 0);
 }
 .body {
-    display: grid;
-    grid-template: 20fr 30fr 50fr/ 25fr 75fr;
-    grid-template-areas:
-        "header             header"
-        "searchContainer    todayContainer"
-        "searchContainer    fiveDayContainer";
-    gap: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: var(--bgcolor);
     width: 100%;
     height: 100%;
     background-image: url(../images/clouds4.jpg);
-    background-size: 100%;
+    background-size: cover;
+    background-position: center;
     
 }
-
-header, section, footer {
+.header {
+    display: flex;
+    flex-direction: row;
     background-color: var(--windowColor);
     border-radius: 30px;
-    padding: 5px;
     border: 4px solid var(--border);
     border-radius: 30px;
     box-shadow: 1px 1px 5px 1px;
-}
-
-.header {
-    grid-area: header;
-    margin-top: 50px;
-    margin-left: 50px;
-    margin-right: 50px;
-    display: flex;
-    height: 150px;
+    height: 15%;
+    width: 90%;
+    max-width: 350px;
+    margin-top: 10px;
     justify-content: space-between;
 }
-
-.byJames {
-    font-size: 16px;
-    color: rgb(255, 0, 0);
-    text-decoration: none;
-}
-
-img {
-    border-radius: 20px;
-}
-
-.titleName {
-    font-size: 72px;
-    text-align: center;
-}
-
-.searchContainer {
-    grid-area: searchContainer;
-    margin-left: 50px;
+.title {
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
+    justify-content: center;
 }
-
+.titleName {
+    font-size: 20px;
+    text-align: center;
+}
+.byJames {
+    font-size: 14px;
+    color: rgb(255, 0, 0);
+    text-decoration: none;
+    text-align: center;
+}
+.img1, .img2 {
+    border-radius: 20px;
+    padding: 10px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+}
+h2 {
+    text-align: center;
+}
+.searchContainer {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-self: center;
+}
+.searchZip {
+    height: 2rem;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    border: inset 3px gray;
+    max-width: 350px;
+    align-self: center;
+}
+#zipBtn, #clearBtn, #prevCity {
+    background-color: var(--closeBtn);
+    max-width: 200px;
+    align-self: center;
+}
 .happyPic {
     background-image: url(../images/bbq.jpg);
     background-size: 100%;
@@ -110,87 +120,78 @@ img {
     border-radius: 20px;
     box-shadow: 1px 1px 5px 1px;
 }
-
-.todayContainer {
-    grid-area: todayContainer;
-    margin-right: 50px;
+.weatherContainter {
+    /* display: flex;
+    flex-direction: column;
+    width: 100%; */
 }
-
-.fiveDayContainer {
-    grid-area: fiveDayContainer;
-    margin-right: 50px;
-    margin-bottom: 30px;
+.todayContainer {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: auto;
 }
-
-.pOne {
-    font-size: 32px;
-    font-weight: bold;
+.todayQry {
+    width: 90%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    background-color: var(--windowColor);
+    border-radius: 30px;
+    border: 4px solid var(--blackText);
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px 1px;
+    list-style: none;
 }
-
-.pTwo {
-    font-size: 24px;
-    color: blue;
+.power {
+    width: 90%;
+    max-width: 450px;
+    background-color: var(--whiteText);
+    border-radius: 30px;
+    align-self: center;
     text-align: center;
-    text-decoration: none;
+    margin-top: 10px;
+    padding: 10px;
+    height: 100%;
+    border: 4px solid var(--blackText);
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px 1px;
+}
+.fiveDayTitle {
+    font-size: 20px;
+}
+.fiveDayContainer {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.fiveDay {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-self: center;
+}
+.days {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 30px;
 }
 
 .footer {
-    grid-area: footer;
-    margin-bottom: 50px;
-    margin-left: 50px;
-    margin-right: 50px;
     
 }
 
-.searchDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-bottom: 40px;
-}
 
-#searchBtn, #clearBtn {
-    background-color: var(--closeBtn);
-}
 
-h2 {
-    text-align: center;
-    font-size: 36px;
-}
 
-.searchCity, .searchState {
-    width: 100%;
-    height: 2rem;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    text-align: center;
-    font-size: large;
-    font-weight: bold;
-    border: inset 3px gray;
-}
 
-.prevDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    list-style: none;
-}
 
-.clearDiv {
-    margin-top: auto;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    margin-left: 10px;
-}
 
-.cityBtn {
-    margin-right: 10px;
-    margin-left: 10px;
-}
+
 .button {
     color: var(--blackText);
     background-color: var(--navBackground);
@@ -203,37 +204,10 @@ h2 {
     font-size: 18px;
 }
 
-.todayContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
 
-.todayQry {
-    width: 30%;
-    background-color: var(--whiteText);
-    border-radius: 30px;
-    margin: 10px;
-    padding: 30px;
-    border: 4px solid var(--blackText);
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px 1px;
-    list-style: none;
-}
 
-.power {
-    width: 20%;
-    background-color: var(--whiteText);
-    border-radius: 30px;
-    margin: 10px;
-    padding-top: 40px;
-    align-self: center;
-    text-align: center;
-    height: 90%;
-    border: 4px solid var(--blackText);
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px 1px;
-}
+
+
 
 a:visited {
     text-decoration: none;
@@ -271,31 +245,6 @@ div ul {
     list-style: none;
 }
 
-.fiveDayTitle {
-    height: 20%;
-}
-
-.fiveDay {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    height: 70%;
-}
-
-.plusOne, .plusTwo, .plusThree, .plusFour, .plusFive {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--whiteText);
-    width: 20%;
-    border: 4px solid var(--blackText);
-    border-radius: 30px;
-    box-shadow: 1px 1px 5px 1px;
-    padding: 20px;
-    margin-left: 15px;
-    margin-right: 15px;
-    justify-content: space-evenly;
-    font-size: 14px;
-}
 
 .forecastText {
     
