@@ -11,12 +11,40 @@ let getWeather = (event) => {
     dateEl.textContent = currentDate;
     // grabbing the value that is entered in the #zip textbox
     let zipInput = document.querySelector('#zip').value;
-
+    localStorage.setItem(zipInput, JSON.stringify(zipInput))
+    
+    
+    //todo: assign dropdown selection to zipInput
+    function getLocalStorage () {
+        let zipInput = document.querySelector('#zip').value;
+        // declaring the element to hold the dropdown menu
+        let dropdown = document.getElementById("dropdown");
+        // Get a list of all the keys in local storage
+        let keys = Object.keys(localStorage);
+        // Loop through the list of keys
+        for (var i = 0; i < keys.length; i++) {
+            // Create a new option element
+            let option = document.createElement("option");
+            // Set the value of the option to the zip code
+            option.value = keys[i];
+            // Set the text of the option to the zip code
+            option.text = keys[i];
+            // Add the option to the dropdown menu
+            dropdown.add(option);
+            
+        };
+        dropdown.addEventListener('click', function() {
+            // Get the selected zip code and set to the zipInput value
+            zipInput.innerHTML = dropdown.value;
+            console.log(zipInput);
+        });
+    };getLocalStorage()
+    
+    
     // defining the api key, url, and concatonated fetch url
     let apiKey = 'd01afd2806e508d282da4f840dd4696a';
     let apiURL = 'https://api.openweathermap.org/data/2.5/forecast?zip=';
     let apiRequest = apiURL + zipInput + '&appid=' + apiKey + '&units=imperial';
-    console.log(apiRequest);
     // fetching the apiRequest url
     fetch(apiRequest)
         // returns a response in json format
@@ -48,13 +76,9 @@ let getWeather = (event) => {
         iconEl.setAttribute('src', displayIconSrc);
         // there are 40 keys in this array
         let listArray = Object.keys(data.list);
-        
-       
-        
-        
-        // there are 8 keys per day (every 3 hours); for 5 days that is 40
+        // there are 8 keys per day (every 3 hours); for 5 days that is 40 total
         // index[0] is used in the current day display
-        // for the loop on the 5day forecast, i am starting at index[7] and i+=8
+        // for the loop on the 5day forecast, i am starting at index[7] and incrementing by 8 or i+=8
         for (i=7; i<listArray.length; i+=8){
             // i start by creating a div for each iteration
             let daysDiv = document.createElement('div');
@@ -105,59 +129,22 @@ let getWeather = (event) => {
             daysDiv.appendChild(humidityOfWeekEl);
             // take each daysDiv that has been created and put it into the fiveDay element on the DOM
             let fiveDay = document.querySelector('.fiveDay');
+            // if 5 generated divs alread exist, then this will remove the old ones so that there are only 5 at any 1 time
+            const dayDiv = document.querySelectorAll('.days');
+            if (dayDiv.length > 5) {
+            for (let i = 0; i < 5; i++) {
+                fiveDay.removeChild(dayDiv[i]);
+                }
+            };
+            // completes the merge of the daysDiv to the fiveDay container
             fiveDay.appendChild(daysDiv);
-            }
-        })
-    
+        };
+    });
 };
 document.querySelector('#zipBtn').addEventListener('click', getWeather)
-
-
-
-
-let searchHistory = localStorage.getItem('search-history');
-// If the search history exists, parse it into an array
-if (searchHistory) {
-    searchHistory = JSON.parse(searchHistory);
-} else {
-    searchHistory = [];
-}
-// Add the new search query to the search history
-searchHistory.push(zipInput);
-// Stringify the array and store it in local storage
-localStorage.setItem('search-history', JSON.stringify(searchHistory));
-// Loop over the search history array
-for (let i = 0; i < searchHistory.length; i++) {
-    // Get the current search query
-    let zipInput = searchHistory[i];
-    // Create a div element for the search query
-    let historyBtn = document.createElement('button');
-    historyBtn.innerHTML = zipInput;
-    historyBtn.classList.add('button');
-    historyBtn.setAttribute('type', submit)
-    // Add an event listener to the div element that will execute the search when the element is clicked
-    historyBtn.addEventListener('click', function() {
-        apiRequest(zipInput);
-    });
-    // Append the div element to the search history container
-    let history = document.querySelector('.history');
-    history.appendChild(historyBtn);
-}
-// Retrieve the search history from local storage
-// Define the function that will execute the search
-function executeSearch(query) {
-        // Perform the search using the API
-    // ...
-    }
-
-
-    let clearBtn = document.querySelector('#clearBtn')
-    clearBtn.addEventListener("click", function() {
-        localStorage.clear();
-        searchHistoryEl.innerHTML = '';
-
-    });
-
-
-
-
+// giving function to the clear history button to clear local storage and reset the page   
+let clearBtn = document.querySelector('#clearBtn')
+clearBtn.addEventListener("click", function() {
+    localStorage.clear();
+    window.location.reload();
+});
