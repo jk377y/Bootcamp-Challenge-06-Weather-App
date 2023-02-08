@@ -12,17 +12,23 @@ const currentHumidity = document.querySelector("#currentHumidity");// get the cu
 const currentWind = document.querySelector("#currentWind");// get the current wind element
 const forecast = document.querySelector("#forecast");// get the forecast element
 const searchHistory = document.querySelector("#searchHistory");// get the search history element
+const clearHistoryBtn = document.querySelector("#clearHistoryBtn");// get the clear history button element
 
 searchBtn.addEventListener("click", function(event) {// this is the event listener for the search button
     event.preventDefault();// prevent default behavior of the click event
     searchWeather(cityInput.value);// search for weather of the city inputted by the user when the search button is clicked
     });
     
-    searchHistory.addEventListener("click", function(event) {// this is the event listener for the search history
+searchHistory.addEventListener("click", function(event) {// this is the event listener for the search history
     if (event.target.tagName === "LI") {// if the user clicks on a city in the search history list
     searchWeather(event.target.textContent);// search for weather of the city that was clicked in the search history list
     }
     });
+
+clearHistoryBtn.addEventListener('click', () => {// this is the event listener for the clear history button
+        searchHistory.innerHTML = '';// clear the history list
+        localStorage.removeItem('history');// remove the history from local storage
+});
 
 function searchWeather(city) {// this function searches for weather of the city inputted by the user
     fetch(`${API_URL}&q=${city}`)// fetch the weather data from the API using the city inputted by the user and the API key
@@ -51,90 +57,59 @@ function displayCurrentWeather(weather) {// this function displays the current w
 function displayForecastWeather(weathers) {// this function displays the future weather information
     forecast.innerHTML = "";// set the inner HTML of the forecast element to an empty string
     weathers.forEach(weather => {// loop through the future weather data
-    const day = document.createElement("div");// create a div element to store the weather data for each day
-    day.classList.add("day");// add the class day to the div element
-    day.innerHTML = // set the inner HTML of the div element to the following HTML
-    // format the date of the weather data received from the API
-    // set the src attribute of the image element to the icon of the weather data received from the API
-    // set the text content of the p element to the temperature of the weather data received from the API and convert the temperature from Kelvin to Fahrenheit
-    // set the text content of the p element to the wind speed of the weather data received from the API
-    // set the text content of the p element to the humidity of the weather data received from the API
-    `
-    <p>${formatDate(weather.dt * 1000)}</p> 
-    <img src="https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png">
-    <p>Temperature: ${kelvinToFahrenheit(weather.main.temp)}°F</p> 
-    <p>Wind Speed: ${weather.wind.speed} MPH</p>
-    <p>Humidity: ${weather.main.humidity}%</p>
-    `
-    ;
-    forecast.appendChild(day);// append the div element to the forecast element
+        const day = document.createElement("div");// create a div element to store the weather data for each day
+        day.classList.add("day");// add the class day to the div element
+        day.innerHTML = // set the inner HTML of the div element to the following HTML
+
+        //! the following 5 lines of comments are referring to the template literal below
+        // format the date of the weather data received from the API
+        // set the src attribute of the image element to the icon of the weather data received from the API
+        // set the text content of the p element to the temperature of the weather data received from the API and convert the temperature from Kelvin to Fahrenheit
+        // set the text content of the p element to the wind speed of the weather data received from the API
+        // set the text content of the p element to the humidity of the weather data received from the API
+        `
+        <p>${formatDate(weather.dt * 1000)}</p> 
+        <img src="https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png">
+        <p>Temperature: ${kelvinToFahrenheit(weather.main.temp)}°F</p> 
+        <p>Wind Speed: ${weather.wind.speed} MPH</p>
+        <p>Humidity: ${weather.main.humidity}%</p>
+        `
+        ;
+        forecast.appendChild(day);// append the div element to the forecast element
     });
     }
-    
-//             let daysDiv = document.createElement('div');
-//             daysDiv.classList.add('days');
-//             // for each iteration, creating an img element, grabbing the icon value and concatonating it into the url to grab the image, and adding classes of forecastText and icon5
-//             let iconsOfWeek = data.list[i].weather[0].icon;
-//             let iconEl = document.createElement('img');
-//             iconEl.src = 'https://openweathermap.org/img/wn/' + iconsOfWeek + '.png';
-//             iconEl.classList.add('forecastText', 'icon5');
-//             // adding iconEl to the iteration div
-//             daysDiv.appendChild(iconEl);
-//             // for each iteration, create a dayjs object to give the day only, creating a <p> element with the class='forecastText' and id='day', setting the textContent of the element to this dayjs 'dddd' format, then adding this dayOfWeekEl to the iteration div
-//             let date = new Date(data.list[i].dt * 1000);
-//             let dayjsDate = dayjs(date);
-//             let dayOfWeek = dayjsDate.format('dddd');
-//             let dayOfWeekEl = document.createElement('p');
-//             dayOfWeekEl.classList.add('forecastText');
-//             dayOfWeekEl.setAttribute('id', dayOfWeek);
-//             dayOfWeekEl.textContent = dayOfWeek;
-//             daysDiv.appendChild(dayOfWeekEl);
-//             // for each iteration grab the description value, create a <p> element with class='forecastText' and id='descriptionOfWeek', store the value into the newly created element and add this element to daysDiv container
-//             let descriptionsOfWeek = data.list[i].weather[0].main;
-//             let descriptionsOfWeekEl = document.createElement('p');
-//             descriptionsOfWeekEl.classList.add('forecastText', 'attribute');
-//             descriptionsOfWeekEl.setAttribute('id', descriptionsOfWeek);
-//             descriptionsOfWeekEl.textContent = descriptionsOfWeek;
-//             daysDiv.appendChild(descriptionsOfWeekEl);
-//             // for each iteration grab the temperature value, create a <p> element with class='forecastText' and id='temperaturesOfWeek', store the value into the newly created element and add this element to daysDiv container
-//             let temperaturesOfWeek = data.list[i].main.temp;
-//             let temperaturesOfWeekEl = document.createElement('p');
-//             temperaturesOfWeekEl.classList.add('forecastText', 'attribute');
-//             temperaturesOfWeekEl.setAttribute('id', temperaturesOfWeek);
-//             temperaturesOfWeekEl.textContent = 'Temp:' + temperaturesOfWeek + 'ºF';
-//             daysDiv.appendChild(temperaturesOfWeekEl);
-//             // for each iteration grab the wind speed value, create a <p> element with class='forecastText' and id='wind', store the value into the newly created element and add this element to daysDiv container
-//             let windsOfWeek = data.list[i].wind.speed;
-//             let windsOfWeekEl = document.createElement('p');
-//             windsOfWeekEl.classList.add('forecastText', 'attribute');
-//             windsOfWeekEl.setAttribute('id', windsOfWeek);
-//             windsOfWeekEl.textContent = 'Winds:' + windsOfWeek + 'mph';
-//             daysDiv.appendChild(windsOfWeekEl);
-//             // for each iteration grab the humidity value, create a <p> element with class='forecastText' and id='humidityOfWeek', store the value into the newly created element and add this element to daysDiv container
-//             let humidityOfWeek = data.list[i].main.humidity;
-//             let humidityOfWeekEl = document.createElement('p');
-//             humidityOfWeekEl.classList.add('forecastText', 'attribute');
-//             humidityOfWeekEl.setAttribute('id', humidityOfWeek);
-//             humidityOfWeekEl.textContent = 'Humidity:' + humidityOfWeek + '%';
-//             daysDiv.appendChild(humidityOfWeekEl);
-//             // take each daysDiv that has been created and put it into the fiveDay element on the DOM
-//             let fiveDay = document.querySelector('.fiveDay');
-//             // if 5 generated divs alread exist, then this will remove the old ones so that there are only 5 at any 1 time
-//             const dayDiv = document.querySelectorAll('.days');
-//             if (dayDiv.length > 5) {
-//             for (let i = 0; i < 5; i++) {
-//                 fiveDay.removeChild(dayDiv[i]);
-//                 }
-//             };
-//             // completes the merge of the daysDiv to the fiveDay container
-//             fiveDay.appendChild(daysDiv);
-//         };
-//     });
-// };
-// document.querySelector('#zipBtn').addEventListener('click', getWeather)
-// // giving function to the clear history button to clear local storage and reset the page   
-// let clearBtn = document.querySelector('#clearBtn')
-// clearBtn.addEventListener("click", function() {
-//     localStorage.clear();
-//     window.location.reload();
-// });
+
+function updateSearchHistory(city) {// this function updates the search history
+    let cities = JSON.parse(localStorage.getItem("cities")) || [];// get the cities array from local storage or create an empty array if it doesn't exist
+    if (!cities.includes(city)) {// if the city inputted by the user is not in the cities array
+        cities.push(city);// push the city inputted by the user into the cities array
+        if (cities.length > 5) {// if the cities array has more than 5 cities in it then remove the first city in the array to limit the search history to 5 cities
+        cities.splice(0, cities.length - 5);// remove the first city in the array so only the most recent 5 cities are in the array
+        }
+        localStorage.setItem("cities", JSON.stringify(cities));// set the cities array in local storage to the cities array
+    }
+    renderSearchHistory();// call the function to render the search history list 
+    }
+
+function renderSearchHistory() {// this function renders the search history list
+let cities = JSON.parse(localStorage.getItem("cities")) || [];// get the cities array from local storage or create an empty array if it doesn't exist
+searchHistory.innerHTML = "";// set the inner HTML of the search history element to an empty string
+cities.forEach(city => {// loop through the cities array
+    const cityItem = document.createElement("li");// create a list item element
+    cityItem.textContent = city;// set the text content of the list item element to the city in the cities array
+    searchHistory.appendChild(cityItem);// append the list item element to the search history element
+});
+}
+
+function kelvinToFahrenheit(temp) {// this function converts the temperature from Kelvin to Fahrenheit
+return ((temp - 273.15) * 9) / 5 + 32;// return the value the formula converts from Kelvin to Fahrenheit
+}
+
+function formatDate(date) {// this function formats the date of the weather data received from the API
+const d = new Date(date);// create a new date object using the date parameter
+const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];// create an array of months
+const month = months[d.getMonth()];// get the month from the date object
+const day = d.getDate();// get the day from the date object
+const year = d.getFullYear();// get the year from the date object
+return `${month} ${day}, ${year}`;// return the formatted date to render as the current date in the current weather section as MM DD, YYYY format
+}
