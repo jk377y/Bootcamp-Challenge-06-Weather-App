@@ -48,7 +48,29 @@ function displayCurrentWeather(weather) {// this function displays the current w
     currentWind.textContent = `Wind Speed: ${weather.wind.speed} MPH`;// set the text content of the current wind element to the wind speed of the weather data received from the API
     }
 
-
+function displayForecastWeather(weathers) {// this function displays the future weather information
+    forecast.innerHTML = "";// set the inner HTML of the forecast element to an empty string
+    weathers.forEach(weather => {// loop through the future weather data
+    const day = document.createElement("div");// create a div element to store the weather data for each day
+    day.classList.add("day");// add the class day to the div element
+    day.innerHTML = // set the inner HTML of the div element to the following HTML
+    // format the date of the weather data received from the API
+    // set the src attribute of the image element to the icon of the weather data received from the API
+    // set the text content of the p element to the temperature of the weather data received from the API and convert the temperature from Kelvin to Fahrenheit
+    // set the text content of the p element to the wind speed of the weather data received from the API
+    // set the text content of the p element to the humidity of the weather data received from the API
+    `
+    <p>${formatDate(weather.dt * 1000)}</p> 
+    <img src="https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png">
+    <p>Temperature: ${kelvinToFahrenheit(weather.main.temp)}°F</p> 
+    <p>Wind Speed: ${weather.wind.speed} MPH</p>
+    <p>Humidity: ${weather.main.humidity}%</p>
+    `
+    ;
+    forecast.appendChild(day);// append the div element to the forecast element
+    });
+    }
+    
 //             let daysDiv = document.createElement('div');
 //             daysDiv.classList.add('days');
 //             // for each iteration, creating an img element, grabbing the icon value and concatonating it into the url to grab the image, and adding classes of forecastText and icon5
