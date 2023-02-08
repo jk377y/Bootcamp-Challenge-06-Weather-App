@@ -24,16 +24,31 @@ searchBtn.addEventListener("click", function(event) {// this is the event listen
     }
     });
 
-//         // to display the icon, the iconSrc destructured value had to be inserted into the url to grab the image
-//         displayIconSrc = 'https://openweathermap.org/img/wn/' + iconSrc + '.png';
-//         iconEl.setAttribute('src', displayIconSrc);
-//         // there are 40 keys in this array
-//         let listArray = Object.keys(data.list);
-//         // there are 8 keys per day (every 3 hours); for 5 days that is 40 total
-//         // index[0] is used in the current day display
-//         // for the loop on the 5day forecast, i am starting at index[7] and incrementing by 8 or i+=8
-//         for (i=7; i<listArray.length; i+=8){
-//             // i start by creating a div for each iteration
+function searchWeather(city) {// this function searches for weather of the city inputted by the user
+    fetch(`${API_URL}&q=${city}`)// fetch the weather data from the API using the city inputted by the user and the API key
+    .then(response => response.json())// convert the response to JSON
+    .then(data => {// this is the callback function that will be executed when the response is received from the API 
+    const current = data.list[0];// get the current weather data from index 0 of the list array
+    const future = [];// create an empty array to store the future weather data
+    for (let i = 7; i < data.list.length; i += 8) {// loop through the list array and get the weather data from index 7, 15, 23, 31, 39; these are times of the day that are 3 hours apart written this way due to the way the API is set up
+        future.push(data.list[i]);// push the weather data into the future array
+    }
+    displayCurrentWeather(current);// call the function to display current weather information 
+    displayForecastWeather(future);// call the function to display future weather information
+    updateSearchHistory(city);// call the function to update the search history
+    });
+    }
+
+function displayCurrentWeather(weather) {// this function displays the current weather information
+    currentCity.textContent = weather.name;// set the text content of the current city element to the name of the city
+    currentDate.textContent = formatDate(weather.dt * 1000);// set the text content of the current date element to the current date of the weather data
+    currentIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);// set the src attribute of the current icon element to the icon of the weather data received from the API
+    currentTemp.textContent = `Temperature: ${kelvinToFahrenheit( weather.main.temp )}°F`;// set the text content of the current temperature element to the temperature of the weather data received from the API and convert the temperature from Kelvin to Fahrenheit
+    currentHumidity.textContent = `Humidity: ${weather.main.humidity}%`;// set the text content of the current humidity element to the humidity of the weather data received from the API
+    currentWind.textContent = `Wind Speed: ${weather.wind.speed} MPH`;// set the text content of the current wind element to the wind speed of the weather data received from the API
+    }
+
+
 //             let daysDiv = document.createElement('div');
 //             daysDiv.classList.add('days');
 //             // for each iteration, creating an img element, grabbing the icon value and concatonating it into the url to grab the image, and adding classes of forecastText and icon5
