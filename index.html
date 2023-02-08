@@ -22,20 +22,20 @@
     <section class="content">
         <div class="searchContainer">
             <h2>Enter your zip code:</h2>
-            <input type="text" id="zip" class="searchZip" placeholder="Enter Zip Code Here">
-            <button type="submit" id="zipBtn" class="searchBtn button">Get the weather!!!</button>
+            <input type="text" id="zip" class="cityInput" placeholder="Enter a city name">
+            <button type="submit" id="searchBtn" class="searchBtn button">Get the weather!!!</button>
             <select name="history" id="dropdown" class="dropdown button"></select>
             <button type="submit" id="clearBtn" class="clearBtn button">Clear your history</button>
         </div>
         <section class="weatherContainer">
             <div class="todayContainer">
                 <ul class="todayQry">
-                    <li id="city" class="city"></li><span id="date" class="font2"></span>
+                    <li id="currentCity" class="city"></li><span id="currentDate" class="font2"></span>
                     <li id="description" class="font2"></li>
-                    <li><img id="icon" class="icon"></img></li>
-                    <li class="font2">Temperature:   <span id="temp"></span></li>
-                    <li class="font2">Wind:  <span id="wind"></span></li>
-                    <li class="font2">Humidity:  <span id="humidity" ></span></li>
+                    <li><img id="currentIcon" class="icon"></img></li>
+                    <li class="font2">Temperature:   <span id="currentTemp"></span></li>
+                    <li class="font2">Wind:  <span id="currentWind"></span></li>
+                    <li class="font2">Humidity:  <span id="currentHumidity" ></span></li>
                 </ul>
                 <img src="./assets/images/bbq.jpg" alt="backyard bbq" class="bbq hide">
                 <div class="power">
@@ -46,7 +46,7 @@
                 <div class="fiveDayTitle">
                     <h2>5 Day Forecast</h2>
                 </div>
-                <div class="fiveDay"></div>
+                <div class="forecast"></div>
             </div>
         </section>
     </section>
