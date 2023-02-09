@@ -34,7 +34,7 @@ function searchWeather(city) {// this function searches for weather of the city 
     fetch(`${API_URL}&q=${city}`)// fetch the weather data from the API using the city inputted by the user and the API key
     .then(response => response.json())// convert the response to JSON
     .then(data => {// this is the callback function that will be executed when the response is received from the API 
-    const current = data;// get the current weather data from index 0 of the list array
+    const current = data;// get the current weather data from the response
     // const cityName = data.city.name;
     const future = [];// create an empty array to store the future weather data
     for (let i = 7; i < data.list.length; i += 8) {// loop through the list array and get the weather data from index 7, 15, 23, 31, 39; these are times of the day that are 3 hours apart written this way due to the way the API is set up
