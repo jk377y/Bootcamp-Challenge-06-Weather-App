@@ -21,19 +21,20 @@
     </header>
     <section class="content">
         <form class="searchContainer">
-            <h2>Enter your zip code:</h2>
-            <input type="text" id="cityInput" placeholder="Enter a city name">
+            <h2>Enter your City</h2>
+            <input type="text" id="cityInput" class="inputText" placeholder="Enter a city name">
             <button type="submit" id="searchBtn" class="searchBtn button">Get the weather!!!</button>
             <div class="search-history">
                 <h2>Search History</h2>
-                <ul id="searchHistory"></ul>
+                <ul id="searchHistory" class="searchHistory"></ul>
             </div>
-            <button type="submit" id="clearHistoryBtn" class="clearBtn button">Clear your history</button>
+            <button type="submit" id="clearHistoryBtn" class="button">Clear your history</button>
         </form>
         <section class="weatherContainer">
             <div class="todayContainer">
                 <ul class="todayQry">
-                    <li id="currentCity" class="city"></li><span id="currentDate" class="font2"></span>
+                    <li id="currentCity" class="city"></li>
+                    <li id="currentDate" class="font2"></li>
                     <li id="description" class="font2"></li>
                     <li><img id="currentIcon" class="icon"></img></li>
                     <li class="font2">Temperature:   <span id="currentTemp"></span></li>
@@ -45,11 +46,13 @@
                     <span class="font2">Powered By:</span><br><a href="https://openweathermap.org" target="_blank"><span class="font2">openweathermap.org</span></a>
                 </div>
             </div>
-            <div id="fiveDayContainer" class="fiveDayContainer">
+            <div id="fiveDayContainer" class="">
                 <div class="fiveDayTitle">
                     <h2>5 Day Forecast</h2>
                 </div>
-                <div id="forecast" class="forecast"></div>
+                <div id="forecast" class="fiveDayContainer">
+
+                </div>
             </div>
         </section>
     </section>

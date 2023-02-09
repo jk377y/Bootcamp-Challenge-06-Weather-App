@@ -34,7 +34,8 @@ function searchWeather(city) {// this function searches for weather of the city 
     fetch(`${API_URL}&q=${city}`)// fetch the weather data from the API using the city inputted by the user and the API key
     .then(response => response.json())// convert the response to JSON
     .then(data => {// this is the callback function that will be executed when the response is received from the API 
-    const current = data.list[0];// get the current weather data from index 0 of the list array
+    const current = data;// get the current weather data from index 0 of the list array
+    // const cityName = data.city.name;
     const future = [];// create an empty array to store the future weather data
     for (let i = 7; i < data.list.length; i += 8) {// loop through the list array and get the weather data from index 7, 15, 23, 31, 39; these are times of the day that are 3 hours apart written this way due to the way the API is set up
         future.push(data.list[i]);// push the weather data into the future array
@@ -46,12 +47,15 @@ function searchWeather(city) {// this function searches for weather of the city 
     }
 
 function displayCurrentWeather(weather) {// this function displays the current weather information
-    currentCity.textContent = weather.name;// set the text content of the current city element to the name of the city
-    currentDate.textContent = formatDate(weather.dt * 1000);// set the text content of the current date element to the current date of the weather data
-    currentIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);// set the src attribute of the current icon element to the icon of the weather data received from the API
-    currentTemp.textContent = `Temperature: ${kelvinToFahrenheit( weather.main.temp )}°F`;// set the text content of the current temperature element to the temperature of the weather data received from the API and convert the temperature from Kelvin to Fahrenheit
-    currentHumidity.textContent = `Humidity: ${weather.main.humidity}%`;// set the text content of the current humidity element to the humidity of the weather data received from the API
-    currentWind.textContent = `Wind Speed: ${weather.wind.speed} MPH`;// set the text content of the current wind element to the wind speed of the weather data received from the API
+    currentCity.textContent = `${weather.city.name}`;// set the text content of the current city element to the name of the city
+    currentDate.textContent = formatDate(weather.list[0].dt * 1000);// set the text content of the current date element to the current date of the weather data
+    currentIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.list[0].weather[0].icon}@2x.png`);// set the src attribute of the current icon element to the icon of the weather data received from the API
+    var temperature = kelvinToFahrenheit(weather.list[0].main.temp);// set the text content of the current temperature element to the temperature of the weather data received from the API; this is received in Kelvin but I am going to convert it to Fahrenheit 
+    var roundedTemperature = temperature.toFixed(1);// round the temperature to 1 decimal place
+    currentTemp.textContent = `Temperature: ${roundedTemperature}°F`;// set the modified temp value to the text content of the current temperature element
+    currentHumidity.textContent = `Humidity: ${weather.list[0].main.humidity}%`;// set the text content of the current humidity element to the humidity of the weather data received from the API
+    currentWind.textContent = `Wind Speed: ${weather.list[0].wind.speed} MPH`;// set the text content of the current wind element to the wind speed of the weather data received from the API
+    console.log(weather);
     }
 
 function displayForecastWeather(weathers) {// this function displays the future weather information
@@ -59,18 +63,20 @@ function displayForecastWeather(weathers) {// this function displays the future 
     weathers.forEach(weather => {// loop through the future weather data
         const day = document.createElement("div");// create a div element to store the weather data for each day
         day.classList.add("day");// add the class day to the div element
+        var temperature = kelvinToFahrenheit(weather.main.temp);
+        var roundedTemperature = temperature.toFixed(1);
         day.innerHTML = // set the inner HTML of the div element to the following HTML
 
         //! the following 5 lines of comments are referring to the template literal below
         // format the date of the weather data received from the API
         // set the src attribute of the image element to the icon of the weather data received from the API
-        // set the text content of the p element to the temperature of the weather data received from the API and convert the temperature from Kelvin to Fahrenheit
+        // set the text content of the p element to the temperature of the weather data received from the API and convert the temperature from Kelvin to Fahrenheit and rounded to the nearest tenth decimal place
         // set the text content of the p element to the wind speed of the weather data received from the API
         // set the text content of the p element to the humidity of the weather data received from the API
         `
         <p>${formatDate(weather.dt * 1000)}</p> 
         <img src="https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png">
-        <p>Temperature: ${kelvinToFahrenheit(weather.main.temp)}°F</p> 
+        <p>Temperature: ${roundedTemperature}°F</p> 
         <p>Wind Speed: ${weather.wind.speed} MPH</p>
         <p>Humidity: ${weather.main.humidity}%</p>
         `
